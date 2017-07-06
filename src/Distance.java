@@ -44,7 +44,7 @@ public class Distance {
 
                 System.out.println("Is the size of your target in Distance?  (YES or NO)  ");
 
-                answer = input.nextLine();
+                answer = input.next();
 
                 if (answer.equalsIgnoreCase("Yes")) {
 
