@@ -1,6 +1,3 @@
-
-
-
 import java.util.*;
 
 
@@ -14,7 +11,7 @@ public class Distance {
 
     public static void calcMeters(float meters, float value, float mils) {
 
-        meters = Math.round(1000 * value / mils);
+        meters = Math.round(25.4 * value / mils);
 
         System.out.println("Your distance to the target is " + meters + " meters.");
     }
@@ -32,50 +29,55 @@ public class Distance {
 
     //public static class ShotCalculation {
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 
-            Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
-            Distance distance = new Distance();
+        Distance distance = new Distance();
 
-            String answer;
+        String answer = "";
 
-            try {
+        try {
 
-                System.out.println("Is the size of your target in Distance?  (YES or NO)  ");
+            System.out.println("Do you want your calculation in Meters or Yards? ");
 
-                answer = input.next();
+            answer = input.next();
 
-                if (answer.equalsIgnoreCase("Yes")) {
+        }catch(InputMismatchException e) {
+            System.out.println("Incorrect value entered" + e.getMessage());
 
-                    System.out.println("Please enter the size of your target in meters:   ");
-                    distance.value = input.nextFloat();
+        }
 
-                    System.out.println("Please enter the mils for your target:   ");
-                    distance.mils = input.nextFloat();
+        try {
+            if (answer.equalsIgnoreCase("meters")) {
 
-                    calcMeters(distance.meters, distance.value, distance.mils);
+                System.out.println("Please enter the size of your target in inches:");
+                distance.value = input.nextFloat();
+
+                System.out.println("Please enter the mils for your target:");
+                distance.mils = input.nextFloat();
+
+                calcMeters(distance.meters, distance.value, distance.mils);
 
 
-                } else {
+            } else {
 
-                    System.out.println("Please enter the size of your target in yards:   ");
-                    distance.value = input.nextFloat();
+                System.out.println("Please enter the size of your target in inches:");
+                distance.value = input.nextFloat();
 
-                    System.out.println("Please enter the mils for your target:   ");
-                    distance.mils = input.nextFloat();
+                System.out.println("Please enter the mils for your target:");
+                distance.mils = input.nextFloat();
 
-                    calcYards(distance.yards, distance.value, distance.mils);
+                calcYards(distance.yards, distance.value, distance.mils);
 
-                }
-
-            } catch (InputMismatchException e) {
-                System.out.println("You entered a letter and not a number. Please enter a correct value" + e.getMessage());
-
-            } finally {
-
-                System.out.println("Thank you for using this program.");
             }
+
+        } catch (InputMismatchException e) {
+            System.out.println("Please enter a correct value  " + e.getMessage());
+
+        } finally {
+
+            System.out.println("\n"+"****Thank you for using this program****");
         }
     }
-
+}
